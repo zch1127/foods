@@ -1,3 +1,10 @@
+:not([class*=-chevron-]):not([id*=-chevron-]):not([class*=Logo]):not([id*=Logo]):not([class*=ico]):not([id*=ico]):not([class*=ui]):not([id*=ui]):not([class*=font]):not([id*=font]):not([class*=logo]):not([id*=logo]):not([class*=pre]):not([id*=pre]):not([class*=next]):not([id*=next]):not([class*=close]):not([id*=close]):not([class*=_]):not([id*=_]):not(.fa):not(.fas):not(icon):not([src]):not(hr):not(br):not(ui):not(placeholder):not(iframe):not(embed):not(object):not(video):not(span):not(head):not(meta):not(title):not(link):not(script):not(style):not(img):not(svg):not(d):not(i):not(s):not(p) {
+    font-weight: bolder;
+    font-family: Wawati SC;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
 .ldimg{
   width: 50px;
   height: 50px;
