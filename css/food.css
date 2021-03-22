@@ -29,24 +29,9 @@ div#J_AttrList {
     font-size: 45px;
     padding-bottom: 10px;
 }
-#J_BrandAttr {
-    color: #edbf00;
-    font-size:82px;
-    font-family:Wawati SC;
-}
 div#d_attr {
     float: right;
     margin: 0px 42px 0px 0px;
-}
-div#d_attr ul li{
-  list-style-type: none;
-}
-.p1{font-family:Wawati SC;
-font-size: 60px;
-    color:#6fd44a;}
-.p2 {
-    font-family:Wawati SC;
-    font-size: 43px;
 }
 
 #attributes div.attributes-list {
