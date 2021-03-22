@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<link href="css/food.css" rel="stylesheet" type ="text/css"/>
+
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.js" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="js/food.js"></script>
+<script type="text/javascript" src="js/htmlToImg.js"></script>
+
+</head>
+
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+  <input type="file" id="upload_excel">
+  <select id="selectVal">
+    <option value="1">早餐</option>
+    <option value="2">午餐</option>
+    <option value="3">午点</option>
+    <option value="4">晚餐</option>
+  </select>
+
+  <div>
+    <input type="button" id="btn" value="下载" />
+  </div>
+  <!-- <div>
+    <input type="button" onclick="myFunction()" value="预览"/>
+  </div> -->
+  <!--  最终结果页模版 -->
+  <table id="tableId" width="1242" height="2208" border="0" cellpadding="0" cellspacing="0">
+  	<tr>
+  		<td colspan="3" id="firstImg">
+  			<img id="img1" type="1" src="image/20210321/zaocan.jpg" width="1242" height="1242" alt=""/></td>
+  	</tr>
+  	<tr>
+  		<td class="foodC" rowspan="2">
+        <div class="attributes-list" id="J_AttrList">
+             <div id="J_BrandAttr" style="display: block;">
+               <p><em class="foodTitle"></em><em class="dataval"></em></p>
+             </div>
+  				          <ul id="J_AttrUL"></ul>
+  						</div>
+      </td>
+  		<td>
+  			<img id="img2" src="image/logo.png" width=300" height="300" alt=""/></td>
+  	</tr>
+  	<tr>
+  		<td class="bro"></td>
+  	</tr>
+  	<tr>
+      <td rowspan="2">
+        <div id="d_attr">
+          <p class="p1">宝宝已吃好~~</p>
+          <p class="p2">二维码可以直接跳转到近期院所新闻</p>
+        </div>
+      </td>
+  		<td class="logocss dl">
+  			<img id="img3" src="image/mp.jpg" width="258" height="258" alt=""/>
+      </td>
+  	</tr>
+
+  </table>
+  <!-- End Save for Web Slices -->
+</body>
+
+</html>

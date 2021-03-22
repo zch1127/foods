@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<link href="css/food.css" rel="stylesheet" type ="text/css"/>
+
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.js" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="js/food.js"></script>
+<script type="text/javascript" src="js/htmlToImg.js"></script>
+
+</head>
+
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+
+<div id="zoy">
+    <select id="selectVal" class="select">
+      <option value="1" class="opt">早餐</option>
+      <option value="2" class="opt">午餐</option>
+      <option value="3" class="opt">午点</option>
+      <option value="4" class="opt">晚餐</option>
+    </select>
+
+    <input type="file" id="upload_excel">
+    <input type="button" id="btn" value="下    载  " class="gradient-button-2"/>
+  </div>
+  <!-- <div>
+    <input type="button" onclick="myFunction()" value="预览"/>
+  </div> -->
+  <!--  最终结果页模版 -->
+  <div id="tableId" style="width:1242px;height:2208px;overflow:hidden;">
+  <table border="0" height="2208" cellpadding="0" cellspacing="0" style="background: #FFFFFF;">
+  	<tr>
+  		<td colspan="3" rowspan="1" id="firstImg">
+  			<img id="img1" type="1" src="image/20210321/zaocan.jpg" width="1242" height="1242" alt=""/>
+        <!-- <img id="img1" type="1" src="https://i.ibb.co/tc9bPsJ/zaocan.jpg" alt=""/> -->
+
+      </td>
+  	</tr>
+  	<tr>
+  		<td class="foodC" rowspan="1">
+        <div class="attributes-list" id="J_AttrList">
+             <div id="J_BrandAttr" style="display: block;">
+               <p><strong class="foodTitle"></strong></p>
+             </div>
+  				    <div><ul id="J_AttrUL"></ul></div>
+  			</div>
+      </td>
+  		<td>
+  			<img id="img2" src="image/logo.png" width="300" height="300" alt=""/>
+        <!-- <img id="img2" src="https://i.ibb.co/2YJhgx8/logo.png" width="300" height="300" alt=""/> -->
+      </td>
+  	</tr>
+  	<tr class="botmp">
+      <td rowspan="1" class="foodC">
+        <div id="d_attr">
+          <ul>
+          <li class="p1">宝宝已吃好~~</li>
+          <li class="p2">二维码可以直接跳转到近期院所新闻</li>
+        </ul>
+        </div>
+      </td>
+  		<td class="logocss">
+  			<img id="img3" src="image/mp.jpg" width="258" height="258" alt=""/>
+        <!-- <img id="img3" src="https://i.ibb.co/f2f5tcQ/mp.jpg" alt=""/> -->
+      </td>
+  	</tr>
+
+  </table>
+</div>
+  <!-- End Save for Web Slices -->
+</body>
+
+</html>

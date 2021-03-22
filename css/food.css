@@ -1,0 +1,113 @@
+.ldimg{
+  width: 50px;
+  height: 50px;
+}
+
+  td.bro {
+    height: 492px;
+}
+td.logocss {
+    padding-right: 86px;
+}
+td.foodC {
+    width: 898px;
+    /* height: 483px; */
+}
+img#img2 {
+    margin-top: -300px;
+}
+tr.botmp {
+    text-align: center;
+}
+
+div#J_AttrList {
+    text-align: center;
+}
+#J_AttrUL li {
+    list-style:none;
+    font-family: Wawati SC;
+    font-size: 45px;
+    padding-bottom: 10px;
+}
+#J_BrandAttr {
+    color: #edbf00;
+    font-size:82px;
+    font-family:Wawati SC;
+}
+div#d_attr {
+    float: right;
+    margin: 0px 42px 0px 0px;
+}
+div#d_attr ul li{
+  list-style-type: none;
+}
+.p1{font-family:Wawati SC;
+font-size: 60px;
+    color:#6fd44a;}
+.p2 {
+    font-family:Wawati SC;
+    font-size: 43px;
+}
+
+#attributes div.attributes-list {
+clear: both;
+border: 1px solid #e6e6e6;
+border-top: none;
+margin-bottom: 10px;
+}
+
+#content .attr-list-hd {
+padding: 5px 20px;
+line-height: 22px;
+color: #999;
+}
+#attributes .attributes-list ul {
+padding: 0 20px 18px;
+text-indent: 0;
+border-top: 1px solid #fff;
+}
+#attributes .attributes-list li {
+display: inline;
+float: left;
+width: 220px;
+height: 18px;
+overflow: hidden;
+margin: 10px 15px 0 0;
+line-height: 18px;
+vertical-align: top;
+white-space: nowrap;
+text-overflow: ellipsis;
+color: #666;
+font-size: 16px;
+}
+.opt{
+width: 120px !important;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+}
+.opt:hover{
+background-color: #007bff;
+color: aliceblue
+}
+select#selectVal {
+  margin-right: 60px;
+  width: 120px;
+  height: 23px !important;
+}
+
+.gradient-button-2{
+  ...
+  border:solid 4px transparent;
+  border-image: linear-gradient(to right, orangered, transparent);
+  border-image-slice: 1;
+}
+
+.gradient-button-2:hover{
+  color: white;
+  background-image: linear-gradient(to right, orangered, transparent);
+  border-right: none;
+}
+div#zoy {
+    margin: 30px 20px 0px 30px;
+}

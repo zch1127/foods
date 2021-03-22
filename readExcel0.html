@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style media="screen">
+.ldimg{
+  width: 50px;
+  height: 50px;
+}
+
+  td.bro {
+    height: 492px;
+}
+td.logocss {
+    padding-right: 86px;
+}
+td.foodC {
+    width: 898px;
+    height: 943px;
+}
+div#J_AttrList {
+    margin: -219px 0px 0px 100px;
+}
+#J_AttrUL li {
+    list-style:none;
+    font-family: Wawati SC;
+    font-size: 45px;
+    padding-bottom: 10px;
+}
+#J_BrandAttr {
+    color: #edbf00;
+    font-size:82px;
+    font-family:Wawati SC;
+}
+div#d_attr {
+    float: right;
+    margin: 0px 42px 0px 0px;
+}
+.p1{font-family:Wawati SC;
+font-size: 60px;
+    color:#6fd44a;}
+p.p2 {
+    font-family:Wawati SC;
+    font-size: 43px;
+}
+
+#attributes div.attributes-list {
+clear: both;
+border: 1px solid #e6e6e6;
+border-top: none;
+margin-bottom: 10px;
+}
+
+#content .attr-list-hd {
+padding: 5px 20px;
+line-height: 22px;
+color: #999;
+}
+#attributes .attributes-list ul {
+padding: 0 20px 18px;
+text-indent: 0;
+border-top: 1px solid #fff;
+}
+#attributes .attributes-list li {
+display: inline;
+float: left;
+width: 220px;
+height: 18px;
+overflow: hidden;
+margin: 10px 15px 0 0;
+line-height: 18px;
+vertical-align: top;
+white-space: nowrap;
+text-overflow: ellipsis;
+color: #666;
+font-size: 16px;
+}
+.logocss.dl {
+    padding-bottom: 69px;
+}
+
+</style>
+
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.core.min.js"></script>
+
+<script>
+function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, img.width, img.height);
+    var dataURL = canvas.toDataURL("image/png");  // 可选其他值 image/jpeg
+    return dataURL;
+}
+
+function init(imgId,type) {
+
+    var src = imgId.attr("src");
+    var image = new Image();
+    image.crossOrigin = "*";  // 必须在image之前赋值
+    image.src = src + '?v=' + Math.random(); // 处理缓存
+    image.width = imgId.attr("width");
+    image.height = imgId.attr("height");
+    image.onload = function(){
+        var base64 = getBase64Image(image);
+        if (type == 1){   // 区分是第几个图片
+            $('#img1').attr('src',base64);
+        } else if (type==2) {
+            $('#img2').attr('src',base64);
+            // 开始绘制
+            setTimeout(function () {
+                app.draw()
+            },1000)
+        }else if (type==3) {
+            $('#img3').attr('src',base64);
+            // 开始绘制
+            setTimeout(function () {
+                app.draw()
+            },1000)
+        }
+        return base64
+    }
+}
+
+// window.onload = function() {
+function myFunction(){
+  $("#tableId").show();
+}
+$(function(){
+// $("#tableId").hide();
+var imgId = $("#img1");
+// init(imgId,1);
+
+var week = new Date().getDay();
+$('#upload_excel').change(function(e) {
+  var footVal = parseInt($("#selectVal").val());//测试默认当天早餐
+  $("#selectVal").hide();
+  //获取当前的年月日
+  var date = new Date();
+  var year = date .getFullYear(); //获取完整的年份(4位)
+  var month = date .getMonth(); //获取当前月份(0-11,0代表1月)
+  var date = date .getDate(); //获取当前日(1-31)
+  $(".dataval").html("-"+month+"月"+date+"日");
+
+  $(this).hide();
+  var files = e.target.files;
+  var fileReader = new FileReader();
+  var excle = $("#upload_excel").val();
+  if(excle == null) {
+  alert("未选择Excel文件");
+  } else {
+  // 判断是否是Excel格式
+  if(excle != '') {
+  //文件名可以带空格
+  var reg = /^.*\.(?:xls|xlsx)$/i;
+  //校验不通过
+  if(!reg.test(excle)) {
+  alert("请上传excel格式的文件!");
+  return;
+  } else {
+  fileReader.onload = function(ev) {
+  try {
+  var data = ev.target.result,
+  workbook = XLSX.read(data, {
+  type: 'binary'
+  }), // 以二进制流方式读取得到整份excel表格对象
+  persons = []; // 存储获取到的数据
+  } catch(e) {
+  alert('文件类型不正确');
+  return;
+  }
+
+// 表格的表格范围，可用于判断表头是否数量是否正确
+var fromTo = '';
+// 遍历每张表读取
+for(var sheet in workbook.Sheets) {
+if(workbook.Sheets.hasOwnProperty(sheet)) {
+    fromTo = workbook.Sheets[sheet]['!ref'];
+    persons = persons.concat(XLSX.utils.sheet_to_json(workbook.Sheets[sheet]));
+
+    //内容去重
+    $("#J_AttrUL").html("");
+    //获取今天星期几
+    var str = "",str_attr="";
+
+    if (week == 1) {
+            str = "今天是星期一";str_attr="__EMPTY";
+    } else if (week == 2 || week == 3 ||week == 4 || week == 5) {
+            str = "今天是星期二";str_attr="__EMPTY_"+(week-1);
+    } else{//周六日展示周五数据
+      str_attr="__EMPTY_4";
+    }
+    var foodTitle = "";
+    for (var i in persons) {
+      var obj = persons[i];
+
+      /*早中晚餐数据展示时间不固定，暂定选择早中晚生成图片
+        早餐：persons[2]-[5] 中餐：persons[7]-[10] 午餐：persons[11]-[12] 晚餐：persons[13]-[16]
+        预设早中晚数据需求值：footVal=1早，2中，3午 4晚餐
+      */
+
+      var ab = parseInt(i);
+      if(ab>1 && ab<6 && footVal==1){
+        foodTitle = obj["绿贝儿中英文幼稚园食谱"]="早餐";
+        $("#firstImg").html("");
+        $("#firstImg").append('<img src="https://i.ibb.co/tc9bPsJ/zaocan.jpg" width="1242" height="1242" alt="">');
+        //获取早餐相关数据
+        for (var prop in obj) {
+          if(prop == str_attr){
+              $('#J_AttrUL').append("<li>"+obj[str_attr]+"</li>");
+          }
+        }
+
+      }else if(ab>6 && ab<11 && footVal==2){
+        foodTitle = obj["绿贝儿中英文幼稚园食谱"]="午餐";
+        $("#firstImg").html("");
+        $("#firstImg").append('<img src="file:///Users/a/Desktop/food/wucan.jpg" width="1242" height="1242" alt="">');
+        //获取午餐相关数据
+        for (var prop in obj) {
+          if(prop == str_attr){
+              $('#J_AttrUL').append("<li>"+obj[str_attr]+"</li>");
+          }
+        }
+      }else if(ab>10 && ab<13 && footVal==3){
+          foodTitle = obj["绿贝儿中英文幼稚园食谱"]="午点";
+          $("#firstImg").html("");
+          $("#firstImg").append('<img src="file:///Users/a/Desktop/food/wudian.jpg" width="1242" height="1242" alt="">');
+          //获取午餐相关数据
+          for (var prop in obj) {
+            if(prop == str_attr){
+                $('#J_AttrUL').append("<li>"+obj[str_attr]+"</li>");
+            }
+          }
+      }else if(ab>12 && ab<17 && footVal==4){
+        foodTitle = obj["绿贝儿中英文幼稚园食谱"]=="晚餐";
+        $("#firstImg").html("");
+        $("#firstImg").append('<img src="file:///Users/a/Desktop/food/wancan.jpg" width="1242" height="1242" alt="">');
+        //获取晚餐相关数据
+        for (var prop in obj) {
+          if(prop == str_attr){
+              $('#J_AttrUL').append("<li>"+obj[str_attr]+"</li>");
+          }
+        }
+
+      }
+   }
+
+   $(".foodTitle").html("今日"+foodTitle);
+
+}
+}
+if(persons.length > 10000) {
+alert("Excel长度超过10000条，不能使用");
+} else {
+_Result = persons;
+var id = "";
+if(persons.length == 0) {
+alert("导入Excel中无数据");
+} else {
+//  添加在页面表格中（添加代码就不举例说明了）
+}
+}
+};
+}
+}
+
+}
+// 以二进制方式打开文件
+fileReader.readAsBinaryString(files[0]);
+// 清空input 值 避免选择同名字的excel 文件不执行
+$("#upload_excel").val("")
+});
+});
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+  <input type="file" id="upload_excel">
+  <select id="selectVal">
+    <option value="1">早餐</option>
+    <option value="2">午餐</option>
+    <option value="3">午点</option>
+    <option value="4">晚餐</option>
+  </select>
+
+  <div>
+    <a class="down" href="" download="downImg">下载</a>
+  </div>
+  <div>
+    <input type="button" onclick="myFunction()" value="预览"/>
+  </div>
+  <!--  最终结果页模版) -->
+  <table id="tableId" width="1242" height="2208" border="0" cellpadding="0" cellspacing="0">
+  	<tr>
+  		<td colspan="3" id="firstImg">
+  			<img id="img1" type="1" src="https://i.ibb.co/tc9bPsJ/zaocan.jpg" width="1242" height="1242" alt=""/></td>
+  	</tr>
+  	<tr>
+  		<td class="foodC" rowspan="2">
+        <div class="attributes-list" id="J_AttrList">
+             <div id="J_BrandAttr" style="display: block;">
+               <p><em class="foodTitle"></em><em class="dataval"></em></p>
+             </div>
+  				          <ul id="J_AttrUL"></ul>
+  						</div>
+      </td>
+  		<td>
+  			<img id="img2" src="file:///Users/a/Desktop/food/logo.png" width="300" height="300" alt=""/></td>
+  	</tr>
+  	<tr>
+  		<td class="bro"></td>
+  	</tr>
+  	<tr>
+      <td rowspan="2">
+        <div id="d_attr">
+          <p class="p1">宝宝已吃好~~</p>
+          <p class="p2">二维码可以直接跳转到近期院所新闻</p>
+        </div>
+      </td>
+  		<td class="logocss dl">
+  			<img id="img3" src="file:///Users/a/Desktop/food/mp.jpg" width="258" height="258" alt=""/>
+      </td>
+  	</tr>
+
+  </table>
+  <!-- End Save for Web Slices -->
+</body>
+<script>
+
+<!-- html生成图片js  -->
+//创建一个新的canvas
+var canvas2 = document.createElement("canvas");
+let _canvas = document.querySelector('#tableId');
+var w = parseInt(window.getComputedStyle(_canvas).width);
+var h = parseInt(window.getComputedStyle(_canvas).height);
+//将canvas画布放大若干倍，然后盛放在较小的容器内，就显得不模糊了
+canvas2.width = w * 2;
+canvas2.height = h * 2;
+canvas2.style.width = w + "px";
+canvas2.style.height = h + "px";
+//可以按照自己的需求，对context的参数修改,translate指的是偏移量
+//  var context = canvas.getContext("2d");
+//  context.translate(0,0);
+var context = canvas2.getContext("2d");
+context.scale(2, 2);
+html2canvas(document.querySelector('#tableId'), { canvas: canvas2 }).then(function(canvas) {
+    //document.body.appendChild(canvas);
+    //canvas转换成url，然后利用a标签的download属性，直接下载，绕过上传服务器再下载
+    document.querySelector(".down").setAttribute('href', canvas.toDataURL());
+});
+
+
+</script>
+</html>
